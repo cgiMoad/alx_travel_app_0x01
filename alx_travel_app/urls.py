@@ -15,7 +15,8 @@ import environ
 # import debug_toolbar
 
 from pathlib import Path
-
+from django.contrib import admin
+from django.urls import path, include
 # Initialize environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -23,7 +24,10 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('listings.urls')),  # This line includes the API
+]
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
